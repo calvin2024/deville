@@ -280,6 +280,7 @@ img{ max-width: 100%; height: auto; display: block; }
   border-color: rgba(10,42,90,.22);
 }
 .btn--primary:hover{ background: #08244e; }
+.btn--lg{ padding: 1.1rem 2.2rem; font-size: 1.15rem; }
 .btn--ghost{
   background: #fff;
   color: var(--ink);
@@ -720,6 +721,18 @@ img{ max-width: 100%; height: auto; display: block; }
   background: rgba(2,6,23,.06);
   padding: .1rem .35rem;
   border-radius: 8px;
+}
+
+.donate-banner__inner{
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.donate-banner__inner h2{ margin-bottom: .6rem; }
+.donate-banner__inner p{
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+  font-size: 1.05rem;
 }
 
 .footer{
