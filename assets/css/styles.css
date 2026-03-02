@@ -1,5 +1,5 @@
 /* 
-  Re‑Elect Jon DeVille — GitHub Pages preview build
+  Re‑Elect Jon DeVille — Campaign Website
   Design goals: modern, clean, professional, accessible, lightweight.
 */
 
@@ -435,6 +435,30 @@ img{ max-width: 100%; height: auto; display: block; }
 .bullets{
   margin: .6rem 0 0 1.1rem;
   color: var(--muted);
+}
+.results__statement{
+  margin-top: 2rem;
+  text-align: center;
+}
+.results__statement blockquote{
+  background: #fff;
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.5rem 2rem;
+  margin: 0 auto;
+  max-width: 48rem;
+  font-style: italic;
+  color: var(--ink);
+  box-shadow: 0 2px 0 rgba(2,6,23,.02);
+}
+.results__statement blockquote p{
+  margin: 0 0 .8rem 0;
+}
+.results__statement blockquote footer{
+  font-style: normal;
+  font-weight: 600;
+  color: var(--navy);
+  margin-top: 1rem;
 }
 .note{
   margin-top: 1rem;

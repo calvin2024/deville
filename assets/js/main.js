@@ -1,4 +1,4 @@
-/* Campaign site preview JS (no build tools, GitHub Pages friendly) */
+/* Campaign site JS (no build tools, GitHub Pages friendly) */
 
 (function () {
   const $ = (sel, root = document) => root.querySelector(sel);
@@ -105,7 +105,7 @@
     });
   }
 
-  // Volunteer form uses mailto for preview
+  // Volunteer form
   const form = $('[data-form]');
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -120,7 +120,6 @@
         `Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}\n`
       );
 
-      // TODO: Replace with real campaign inbox.
       const to = 'campaign@example.com';
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     });
