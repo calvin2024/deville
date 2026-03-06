@@ -30,7 +30,8 @@ body{
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--ink);
-  background: var(--bg);
+  background: linear-gradient(180deg, #f0f4f8 0%, #e8ecf2 35%, #f5f0ee 70%, #f0f4f8 100%);
+  background-attachment: fixed;
   line-height: 1.55;
 }
 
@@ -72,9 +73,9 @@ img{ max-width: 100%; height: auto; display: block; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255,255,255,.82);
+  background: rgba(10, 42, 90, .92);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
 .header__inner{
@@ -90,7 +91,7 @@ img{ max-width: 100%; height: auto; display: block; }
   align-items: center;
   gap: .75rem;
   text-decoration: none;
-  color: inherit;
+  color: #ffffff;
   min-width: 240px;
 }
 .brand__mark{
@@ -99,7 +100,7 @@ img{ max-width: 100%; height: auto; display: block; }
 }
 .brand__text{ display: grid; line-height: 1.1; }
 .brand__name{ font-weight: 700; letter-spacing: .2px; }
-.brand__sub{ font-size: .9rem; color: var(--muted); font-weight: 500; }
+.brand__sub{ font-size: .9rem; color: rgba(255,255,255,.7); font-weight: 500; }
 
 .nav{
   display: flex;
@@ -108,36 +109,36 @@ img{ max-width: 100%; height: auto; display: block; }
 }
 .nav a{
   text-decoration: none;
-  color: var(--ink);
+  color: rgba(255,255,255,.88);
   font-weight: 600;
   font-size: .95rem;
   padding: .65rem .8rem;
   border-radius: 999px;
   transition: background .18s ease, color .18s ease;
 }
-.nav a:hover{ background: rgba(2, 6, 23, .06); }
+.nav a:hover{ background: rgba(255,255,255,.12); color: #ffffff; }
 .nav__cta{
   margin-left: .35rem;
-  background: var(--primary);
-  color: var(--primary-ink) !important;
+  background: var(--accent);
+  color: #ffffff !important;
   padding: .65rem 1rem;
 }
-.nav__cta:hover{ background: #08244e; }
+.nav__cta:hover{ background: #9b1924; }
 
 .navbtn{
   display: none;
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #fff;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.1);
   cursor: pointer;
 }
 .navbtn__lines{
   display: block;
   width: 18px;
   height: 2px;
-  background: var(--ink);
+  background: #ffffff;
   margin: 0 auto;
   position: relative;
 }
@@ -148,7 +149,7 @@ img{ max-width: 100%; height: auto; display: block; }
   left: 0;
   width: 18px;
   height: 2px;
-  background: var(--ink);
+  background: #ffffff;
 }
 .navbtn__lines::before{ top: -6px; }
 .navbtn__lines::after{ top: 6px; }
@@ -170,13 +171,18 @@ img{ max-width: 100%; height: auto; display: block; }
     align-items: stretch;
     gap: .15rem;
   }
-  .nav a{ border-radius: 14px; }
+  .nav a{ border-radius: 14px; color: var(--ink); }
+  .nav a:hover{ background: rgba(2, 6, 23, .06); color: var(--ink); }
   .nav[data-open="true"]{ display: flex; }
-  .nav__cta{ margin-left: 0; text-align: center; }
+  .nav__cta{ margin-left: 0; text-align: center; color: #fff !important; }
+  .nav__cta:hover{ color: #fff !important; }
 }
 
 .section{
   padding: 4.2rem 0;
+}
+@media (max-width: 640px){
+  .section{ padding: 2.4rem 0; }
 }
 .section--alt{
   background: linear-gradient(180deg, rgba(10,42,90,.03), rgba(178,30,43,.02));
@@ -221,6 +227,9 @@ img{ max-width: 100%; height: auto; display: block; }
 @media (max-width: 900px){
   .hero{ padding-top: 4.2rem; }
   .hero__grid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 640px){
+  .hero{ padding: 2.4rem 0 2rem; }
 }
 
 .kicker{
@@ -771,3 +780,37 @@ img{ max-width: 100%; height: auto; display: block; }
   color: var(--muted);
   font-size: .95rem;
 }
+
+/* Scroll-triggered reveal animations */
+@keyframes fadeInUp{
+  from{ opacity: 0; transform: translateY(24px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+.reveal{
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1);
+}
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children animation */
+.reveal-children > *{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1);
+}
+.reveal-children.is-visible > *{
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-children.is-visible > *:nth-child(1){ transition-delay: 0s; }
+.reveal-children.is-visible > *:nth-child(2){ transition-delay: .07s; }
+.reveal-children.is-visible > *:nth-child(3){ transition-delay: .14s; }
+.reveal-children.is-visible > *:nth-child(4){ transition-delay: .21s; }
+.reveal-children.is-visible > *:nth-child(5){ transition-delay: .28s; }
+.reveal-children.is-visible > *:nth-child(6){ transition-delay: .35s; }
+.reveal-children.is-visible > *:nth-child(n+7){ transition-delay: .4s; }
