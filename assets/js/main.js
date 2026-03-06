@@ -124,4 +124,28 @@
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     });
   }
+
+  // Scroll-triggered reveal animations
+  const reduceMotionGlobal = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotionGlobal) {
+    const revealEls = $$('.reveal, .reveal-children');
+    if (revealEls.length && 'IntersectionObserver' in window) {
+      // 12% visible + 40px offset triggers animation just as the element enters the viewport
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function (el) { observer.observe(el); });
+    } else {
+      // Fallback: show everything immediately
+      revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  } else {
+    // Reduced motion: skip animations, show content immediately
+    $$('.reveal, .reveal-children').forEach(function (el) { el.classList.add('is-visible'); });
+  }
 })();
