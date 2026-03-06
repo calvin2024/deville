@@ -315,6 +315,8 @@ img{ max-width: 100%; height: auto; display: block; }
   justify-items: stretch;
 }
 .hero__photo{
+  width: 100%;
+  height: auto;
   border-radius: calc(var(--radius) + 6px);
   box-shadow: var(--shadow);
   border: 1px solid rgba(15,23,42,.08);
