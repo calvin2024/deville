@@ -130,6 +130,7 @@
   if (!reduceMotionGlobal) {
     const revealEls = $$('.reveal, .reveal-children');
     if (revealEls.length && 'IntersectionObserver' in window) {
+      // 12% visible + 40px offset triggers animation just as the element enters the viewport
       const observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
